@@ -6,10 +6,11 @@ esse cálculo na empresa que trabalho.
 
 Está sendo utilizado a linguagem Python e PySimpleGUI como interface gráfica.
 
-## Funcionalidade 
+## Funcionalidade
+
 <h1 aling= "center">
 <imag alt="InterfaceGrafica" title="InterfaceGrafica"
-src="/home/andrade/PycharmProjects/hora_extra/screenshots/interface_grafica.png"/>
+src="/PycharmProjects/hora_extra/screenshots/interface_grafica.png"/>
 </h1>
 
 
@@ -28,6 +29,5 @@ informações terá que excluir o arquivo ao finalizar.
 
 ### Autor
 + Junior de Andrade
-+ [! [ Emblema do Linkedin ](https://img.shields.io/badge/-Junior-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin .com / in /junior-de-   andrade2007/)] 
-(https://www.linkedin.com/in/junior-de-andrade2007/)
++ [Linkedin](https://www.linkedin.com/in/junior-de-andrade2007/)
 
