@@ -1,8 +1,9 @@
+from os import error
 import PySimpleGUI as sg
 
 sg.theme('DarkBrown')
 frame_layout = [[sg.Output(size=(30, 10), background_color='white', text_color='black')]
-                ]
+               ]
 
 coluna = [[sg.Sizer(0, 20)],
           [sg.Text('Mês:',
@@ -25,7 +26,7 @@ coluna = [[sg.Sizer(0, 20)],
           [sg.Text('Salário: ',
                    size=(12, 1),
                    font=("ubunto", 10)),
-           sg.Input(key='-SALARIO-',
+           sg.Input(key='-SALARIO-', 
                     font=("ubunto", 10),
                     size=(30, 1),
                     text_color='white',
@@ -50,38 +51,75 @@ coluna = [[sg.Sizer(0, 20)],
           ]
 frame_coluna = coluna
 
-layout = [[sg.Frame('Dados', frame_coluna, vertical_alignment='top'), sg.Frame('Resultado', frame_layout)],
+layout = [[sg.Frame('Dados', frame_coluna, vertical_alignment='top'),  sg.Frame('Resultado', frame_layout)],
           [sg.Button('Entrar'), sg.Button('Salvar')]
           ]
 
 window = sg.Window("Calculo De Horas Extras", layout=layout)
 
-
-def calculo_extra_50(x_por_cento=0.0, salario=1237.00):
+def calculo_extra_50(horas=0.0, salario=1237.00):
     """
-    função para calcular horas extras 50%.
-    :param x_por_cento: entrada referente as horas trabalhas do usuario em 50%.
+    :função para calcular horas extras 50%.
+    :param horas: entrada referente as horas trabalhas do usuario em 50%.
     :param salario: entrada referente ao salario bruto do usuario.
-    :return: x_por_cento * o salario / 220.00 * 0,5 * 3.
+    :return: horas * o salario / 220.00 * 0,5 * 3.
     """
-    entrada1 = float(x_por_cento)
-    entrada2 = float(salario)
-    if entrada1 >= 0:
-        valor_extra = entrada1 * round(((entrada2 / 220.00) * 0.5) * 3, 1)
+    # Tradando erro de entrada 
+    try:
+        entrada1 = float(horas)
+    except(TypeError, NameError):
+        print('Erro: Digite um valor numerico')
+    except ValueError:
+        print('Erro: O separador decimar deve ser "Ponto" ')
+    else:
+        entrada1 = float(horas)
+    try:    
+        entrada2 = float(salario)
+    except(TypeError, NameError):
+        print(f'Erro: Digite um valor numerico')
+    except ValueError:
+        print('Erro: O separador decimar deve ser "Ponto" ')
+    else:
+        entrada2 = float(salario)
+    try:
+        if entrada1 >= 0:
+            valor_extra = entrada1 * round(((entrada2 / 220.00) * 0.5) * 3, 1)
+    except UnboundLocalError:
+        print('Erro: Digite um valor numerico')
+    else:
         return f'Horas 50%: {valor_extra}'
 
 
-def calculo_extra_100(x_por_cento=0.0, salario=1237.00):
+def calculo_extra_100(horas=0.0, salario=1237.00):
     """
     Funçao para calcular as horas extras em 100%.
-    :param x_por_cento: entrada referente as horas trabalhas do usuario em 100%.
+    :param horas: entrada referente as horas trabalhas do usuario em 100%.
     :param salario: Entrada referente ao salario bruto do usuario.
-    :return: x_por_cento * o salario / 220.00 * 2.
+    :return: horas * o salario / 220.00 * 2.
     """
-    entrada1 = int(x_por_cento)
-    entrada2 = float(salario)
-    if entrada1 >= 0:
-        valor_extra = entrada1 * round((entrada2 / 220.00) * 2, 1)
+    # Trantando erro de entrada
+    try:
+        entrada1 = float(horas)
+    except(TypeError, NameError):
+        print('Erro: Digite um valor numerico')
+    except ValueError:
+        print('Erro: O separador decimar deve ser "Ponto" ')
+    else:
+        entrada1 = float(horas)
+    try:
+        entrada2 = float(salario)
+    except(TypeError, NameError):
+        print('Erro: Digite um valor numerico')
+    except ValueError :
+        print('Erro: O separador decimar deve ser "Ponto" ')
+    else:
+        entrada2 = float(salario)
+    try:
+        if entrada1 >= 0:
+            valor_extra = entrada1 * round((entrada2 / 220.00) * 2, 1)
+    except UnboundLocalError:
+        print('Erro: Digite um valor numerico')
+    else:
         return f'Horas 100%: {valor_extra}'
 
 
@@ -92,7 +130,7 @@ while True:
     if eventos == 'Entrar':
         data = valor['-MES-']
         funcionarios = valor['-FUNCIONARIO-']
-        salario = float(valor['-SALARIO-'])
+        salario = valor['-SALARIO-']  
         horas_50 = valor['-HORAS1-']
         horas_100 = valor['-HORAS2-']
         mes = f'Mês: {str(data)}'
